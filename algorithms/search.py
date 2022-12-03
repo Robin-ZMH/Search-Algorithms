@@ -78,7 +78,7 @@ IDS = iterative_deepening_search
 
 if __name__ == '__main__':
     graph = Graph()
-    algorithms = [DFS, BFS, Uniform, Greedy, AStar]
+    algorithms = [DFS, BFS, Uniform, Greedy, AStar, IDS]
     res_lst = [func(graph, 0, 1894) for func in algorithms]
 
     for res in res_lst:

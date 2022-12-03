@@ -6,36 +6,21 @@ from utils import Graph, Result
 graph = Graph()
 
 
-def first_quest():
-    points = [(0, 1894), (4, 3115), (18, 9186), (25, 15061), (33, 21040)]
-    data_frame = [AStar(graph, start, end).data
-                  for start, end in points]
-
-    df = pd.DataFrame(data_frame)
-    df.to_csv('results/question1.csv')
-
-
-def second_quest():
+def graph_search_test():
     algorithms = [DFS, BFS, Uniform, Greedy, AStar]
     points = [(random.choice(graph.nodes),
                random.choice(graph.nodes))
-              for _ in range(1000)]
+              for _ in range(100)]
 
     data_frame = [func(graph, start, end).data
                   for func in algorithms
                   for start, end in points]
 
     df = pd.DataFrame(data_frame)
-    df.to_csv('results/question2.csv')
+    df.to_csv('graph_search_test.csv')
 
 
-def third_quest():
-    raise NotImplementedError(
-        "We solve the Question3 by visualizing, "
-        "and the result can be found at 'results/Q2&3 Figure.twbx' ")
-
-
-def forth_quest():
+def tree_like_search_test():
     """
     tree-like search will trap into a circle and never terminate,
     so, only test iterative_deepening_search for 5 random samples,
@@ -52,10 +37,9 @@ def forth_quest():
     avg_time1 = df['memo cost(number of nodes)'][:5].mean()
     avg_time2 = df['memo cost(number of nodes)'][5:].mean()
     print(avg_time1, avg_time2)
-    df.to_csv('results/question4.csv')
+    df.to_csv('tree_like_search_test.csv')
 
 
 if __name__ == '__main__':
-    first_quest()
-    second_quest()
-    forth_quest()
+    graph_search_test()
+    # tree_like_search_test()
